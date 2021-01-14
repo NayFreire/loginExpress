@@ -19,6 +19,9 @@ const publicDirectory = path.join(__dirname, './public') //O módulo path, com o
 
 app.use(express.static(publicDirectory)) //Aqui se trata do uso dos elementos que estão na pasta do caminho publicDirectory
 
+// app.use(express.urlencoded({extended: false}))
+// app.use(express.json)
+
 app.set('view engine', 'hbs');
 
 db.connect((error)=> {
@@ -32,6 +35,8 @@ db.connect((error)=> {
 
 //Rota para o arquivo de rotas
 app.use('/', require('./routes/pages'))
+
+app.use('/auth', require('./routes/auth'));
 
 app.listen(5005, () => {
     console.log('O pai tá on')
