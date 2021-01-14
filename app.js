@@ -30,15 +30,8 @@ db.connect((error)=> {
     }
 })
 
-//Rota para a página index
-app.get('/', (req, res) => {
-    res.render('index')
-})
-
-//Rota para a página register
-app.get('/register', (req, res) => {
-    res.render('register')
-})
+//Rota para o arquivo de rotas
+app.use('/', require('./routes/pages'))
 
 app.listen(5005, () => {
     console.log('O pai tá on')
