@@ -6,11 +6,12 @@ dotenv.config({ path: './.env' })
 
 const app = express();
 const db = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
+    //Os dados da conexão com o banco de dados estão no arquivo .env
+    host: process.env.DATABASE_HOST,
+    user: process.env.DATABASE_USER,
+    password: process.env.DATABASE_PASSWORD,
     port: 3308,
-    database: 'loginexpressnode'
+    database: process.env.DATABASE
 })
 
 db.connect((error)=> {
