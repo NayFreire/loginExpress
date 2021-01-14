@@ -31,7 +31,7 @@ db.connect((error)=> {
 })
 
 app.get('/', (req, res) => {
-    res.send('<h1>Home Page</h1>')
+    res.render('index')
 })
 
 app.listen(5005, () => {
