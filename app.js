@@ -16,11 +16,10 @@ const db = mysql.createConnection({
 })
 
 const publicDirectory = path.join(__dirname, './public') //O módulo path, com o método join, junta caminhos de arquivos para criar um novo caminho diferente. Nesse caso, está juntando o caminho deste projeto, 'C:\Users\nayfr\TestesTecnologias\loginNode', com o caminho './public'. Dessa forma o caminho fica 'C:\Users\nayfr\TestesTecnologias\loginNode\public', apontando para a pasta públic
-
 app.use(express.static(publicDirectory)) //Aqui se trata do uso dos elementos que estão na pasta do caminho publicDirectory
 
-// app.use(express.urlencoded({extended: false}))
-// app.use(express.json)
+app.use(express.urlencoded({extended: false}))
+app.use(express.json())
 
 app.set('view engine', 'hbs');
 
