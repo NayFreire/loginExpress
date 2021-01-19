@@ -1,4 +1,6 @@
 const { request } = require("express")
+const jwt = require("jsonwebtoken")
+const bcrypt = require("bcryptjs")
 
 const mysql = require('mysql')
 const db = mysql.createConnection({
@@ -22,7 +24,7 @@ exports.register = (req, res) => {
     // ---------- Forma desestruturada de buscar os dados do formulário de registro ----------
     const {name, email, password, passwordConfirm} = req.body
 
-    db.query('SELECT email FROM users WHERE email = ?', [email], (error, results) => {
+    db.query('SELECT email FROM users WHERE email = ?', [email], async (error, results) => {
         if(error){ //Caso um erro apareça
             console.log(error)
         }
@@ -33,7 +35,21 @@ exports.register = (req, res) => {
         else if(password !== passwordConfirm){ //Caso as senhas não batam
             return res.render('register', {message: 'The passwords do not match'})
         }
+
+        let hashedPassword = await bcrypt.hash(password, 8); //hash(o que eu quero encriptar, quantas vezes eu quero encriptar)
+        console.log('hashed: ' + hashedPassword)
+
+        db.query('INSERT INTO users SET ?', {name: name, email: email, password: hashedPassword}, (error, results) => {
+            if(error){
+                console.log(error)
+            }
+            else{
+                console.log(results)
+                return res.render('register', {message: 'User registered'})
+            }
+        })
     })
 
-    res.send('Form submited')
+    
+
 }

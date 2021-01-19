@@ -20,6 +20,12 @@
 
     <div class="container mt-4">
         <div class="card">
+
+            {{!-- Caso haja algum problema no registro, uma mensagem indicando o que é vai aparecer --}}
+            {{#if message}}
+                <h4 class="alert alert-danger mt-4">{{message}}</h4>
+            {{/if}}
+
             <div class="card-header">
                 Register Form
             </div>
@@ -45,10 +51,6 @@
                 </form>
             </div>
         </div>
-        {{!-- Caso haja algum problema no registro, uma mensagem indicando o que é vai aparecer --}}
-        {{#if message}}
-            <h4 class="alert alert-danger mt-4">{{message}}</h4>
-        {{/if}}
     </div>
 </body>
 </html>
