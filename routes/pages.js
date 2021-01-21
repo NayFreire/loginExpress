@@ -11,4 +11,9 @@ router.get('/register', (req, res) => {
     res.render('register');
 });
 
+//Rota para a página login
+router.get('/login', (req, res) => {
+    res.render('login');
+});
+
 module.exports = router; //exporta as rotas do router. Em app.js, uma rota carrega este arquivo e, consequentemente, suas rotas

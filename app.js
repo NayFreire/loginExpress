@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path')
 const mysql = require('mysql');
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser')
 
 dotenv.config({ path: './.env' })
 
@@ -20,6 +21,7 @@ app.use(express.static(publicDirectory)) //Aqui se trata do uso dos elementos qu
 
 app.use(express.urlencoded({extended: false}))
 app.use(express.json())
+app.use(cookieParser())
 
 app.set('view engine', 'hbs');
 
